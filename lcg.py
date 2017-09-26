@@ -13,27 +13,27 @@ class Random():
       self.mod = mod
 
  
-   def randInt(self):
+   def __randInt(self):
      '''
        main function to genrate seed for random variable
      '''
      self.seed = int((self.a * self.seed + self.c)) % self.mod
      yield self.seed
 
-   def getLcg(self): 
+   def __getLcg(self): 
      '''
        get seed value and return division 
      '''
      retval = 0
-     for i in self.randInt():
+     for i in self.__randInt():
         retval = i / self.mod 
      return retval
  
-   def _randRange(self, min, max):
+   def __randRange(self, min, max):
      '''
        calculate random number in b/w the given range using LCG 
      '''
-     lcg = self.getLcg()
+     lcg = self.__getLcg()
      retval = min + lcg * (max - min) 
      return retval
 
@@ -41,7 +41,7 @@ class Random():
      '''
        main function to get random value in range 
      '''
-     return int(abs(self._randRange(min, max)))
+     return int(abs(self.__randRange(min, max)))
   
 
 if __name__ == "__main__":
